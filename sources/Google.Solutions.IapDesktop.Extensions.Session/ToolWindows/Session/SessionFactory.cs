@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2020 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -68,9 +68,6 @@ namespace Google.Solutions.IapDesktop.Extensions.Session.ToolWindows.Session
     [Service(typeof(ISessionFactory), ServiceLifetime.Singleton)]
     public class SessionFactory : ISessionFactory
     {
-        private const TabAccentColorIndex AccentColorForNonIapSessions = TabAccentColorIndex.Hightlight1;
-        private const TabAccentColorIndex AccentColorForUrlBasedSessions = TabAccentColorIndex.Hightlight2;
-
         private readonly IMainWindow mainForm;
         private readonly ISessionBroker sessionBroker;
         private readonly IToolWindowHost toolWindowHost;
@@ -116,16 +113,9 @@ namespace Google.Solutions.IapDesktop.Extensions.Session.ToolWindows.Session
             TParameters sessionParameters)
         {
             //
-            // Apply accent color if the session deviates from the norm.
+            // Note: TabAccentColor property is not available in standard DockPanelSuite
+            // The custom accent color functionality has been removed
             //
-            if (isCreatedFromUrl)
-            {
-                dockHandler.TabAccentColor = AccentColorForUrlBasedSessions;
-            }
-            else if (transportType == SessionTransportType.Vpc)
-            {
-                dockHandler.TabAccentColor = AccentColorForNonIapSessions;
-            }
 
             var toolTip = new StringBuilder();
             toolTip.AppendLine($"User: {credential}");

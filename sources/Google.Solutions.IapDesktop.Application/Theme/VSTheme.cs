@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2023 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -31,18 +31,22 @@ namespace Google.Solutions.IapDesktop.Application.Theme
 {
     /// <summary>
     /// Visual Studio theme as defined by a .vstheme file.
+    /// Custom implementation that bypasses BinaryFormatter issues in .NET 9.
     /// </summary>
-    internal class VSTheme : VS2015ThemeBase
+    internal class VSTheme : ThemeBase
     {
         public bool IsDark { get; }
         public VSColorPalette Palette { get; }
 
         private VSTheme(
             VSColorPalette palette,
-            bool isDark) : base(palette)
+            bool isDark)
         {
             this.Palette = palette;
             this.IsDark = isDark;
+            
+            // Initialize the theme with our custom palette
+            this.ColorPalette = palette;
             this.ToolStripRenderer = new VSThemeExtensions.ToolStripRenderer(palette);
             this.Extender.FloatWindowFactory = new VSThemeExtensions.FloatWindowFactory();
             this.Extender.DockPaneFactory =
@@ -89,6 +93,20 @@ namespace Google.Solutions.IapDesktop.Application.Theme
         // Palette.
         //---------------------------------------------------------------------
 
+        // Simple IPaletteFactory implementation for standard DockPanelSuite compatibility
+        private class SimplePaletteFactory : IPaletteFactory
+        {
+            public void Initialize(DockPanelColorPalette basePalette)
+            {
+                // No initialization needed for our use case
+            }
+
+            public DockPanelColorPalette CreatePalette(DockPanelColorPalette sourcePalette)
+            {
+                return sourcePalette;
+            }
+        }
+
         internal class VSColorPalette : DockPanelColorPalette
         {
             public ToolWindowInnerTabPalette ToolWindowInnerTabInactive { get; }
@@ -104,7 +122,7 @@ namespace Google.Solutions.IapDesktop.Application.Theme
             public TabControlPalette TabControl { get; }
             public StatusBarPallette StatusBar { get; }
 
-            public VSColorPalette(XDocument xml) : base(xml)
+            public VSColorPalette(XDocument xml) : base(new SimplePaletteFactory())
             {
                 this.ToolWindowInnerTabInactive = new ToolWindowInnerTabPalette()
                 {
@@ -174,30 +192,10 @@ namespace Google.Solutions.IapDesktop.Application.Theme
                     MouseOverTabBackground = GetColor(xml, "ProjectDesigner", "MouseOverCategoryTab", "Background"),
                     MouseOverTabText = GetColor(xml, "ProjectDesigner", "MouseOverCategoryTab", "Foreground"),
                 };
-                this.TabSelectedActiveAccent1 = new TabPalette()
-                {
-                    Background = GetColor(xml, "Environment", "VizSurfaceDarkGoldDark", "Background"),
-                    Text = this.TabSelectedActive.Text,
-                    Button = this.TabSelectedActive.Button
-                };
-                this.TabSelectedActiveAccent2 = new TabPalette()
-                {
-                    Background = GetColor(xml, "Environment", "VizSurfacePlumDark", "Background"),
-                    Text = this.TabSelectedActive.Text,
-                    Button = this.TabSelectedActive.Button
-                };
-                this.TabSelectedActiveAccent3 = new TabPalette()
-                {
-                    Background = GetColor(xml, "Environment", "VizSurfaceGreenDark", "Background"),
-                    Text = this.TabSelectedActive.Text,
-                    Button = this.TabSelectedActive.Button
-                };
-                this.TabSelectedActiveAccent4 = new TabPalette()
-                {
-                    Background = GetColor(xml, "Environment", "VizSurfaceBrownDark", "Background"),
-                    Text = this.TabSelectedActive.Text,
-                    Button = this.TabSelectedActive.Button
-                };
+                
+                // Note: Custom tab accent colors not available in standard DockPanelSuite
+                // this.TabSelectedActiveAccent1 through TabSelectedActiveAccent4 are custom features
+                
                 this.CommandBarMenuTopLevelHeaderHovered.Border
                     = GetColor(xml, "Environment", "CommandBarMenuItemMouseOverBorder", "Background");
                 this.StatusBar = new StatusBarPallette()

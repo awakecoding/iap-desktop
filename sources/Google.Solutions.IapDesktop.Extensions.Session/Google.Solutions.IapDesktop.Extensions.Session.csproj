@@ -6,6 +6,9 @@
     <Description>Session extension</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Platforms>x64;x86;ARM64</Platforms>
+    
+    <!-- Disable Windows Forms obsolete analyzer warnings -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ToolWindows\Download\**" />
@@ -13,7 +16,8 @@
     <None Remove="ToolWindows\Download\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Solutions.ThirdParty.DockPanelSuite" />
+    <PackageReference Include="DockPanelSuite" />
+    <PackageReference Include="DockPanelSuite.ThemeVS2015" />
     <PackageReference Include="Google.Apis" />
     <PackageReference Include="Google.Apis.Auth" />
     <PackageReference Include="Google.Apis.CloudOSLogin.v1" />
@@ -65,16 +69,19 @@
     <Compile Update="ToolWindows\Options\TerminalOptionsSheet.Designer.cs">
       <DependentUpon>TerminalOptionsSheet.cs</DependentUpon>
     </Compile>
-    <Compile Update="ToolWindows\Session\RdpView.cs" />
-    <Compile Update="ToolWindows\Session\SessionViewBase.cs" />
-    <Compile Update="ToolWindows\SshKeys\AuthorizedPublicKeysView.cs" />
-    <Compile Update="ToolWindows\SshKeys\AuthorizedPublicKeysView.Designer.cs">
-      <DependentUpon>AuthorizedPublicKeysView.cs</DependentUpon>
-    </Compile>
-    <Compile Update="ToolWindows\SshKeys\AuthorizedPublicKeysList.cs" />
     <Compile Update="ToolWindows\Tunnels\TunnelsView.cs" />
-    <Compile Update="ToolWindows\Tunnels\TunnelsView.designer.cs">
+    <Compile Update="ToolWindows\Tunnels\TunnelsView.Designer.cs">
       <DependentUpon>TunnelsView.cs</DependentUpon>
+    </Compile>
+    <Compile Update="ToolWindows\Session\SessionContextMenuCommands.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionContextMenuCommands.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ToolWindows\Session\SessionToolbarCommands.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SessionToolbarCommands.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -85,14 +92,12 @@
     <ProjectReference Include="..\Google.Solutions.Iap\Google.Solutions.Iap.csproj" />
     <ProjectReference Include="..\Google.Solutions.Mvvm\Google.Solutions.Mvvm.csproj" />
     <ProjectReference Include="..\Google.Solutions.Platform\Google.Solutions.Platform.csproj" />
-    <ProjectReference Include="..\Google.Solutions.Settings\Google.Solutions.Settings.csproj" />
     <ProjectReference Include="..\Google.Solutions.Ssh\Google.Solutions.Ssh.csproj" />
     <ProjectReference Include="..\Google.Solutions.Terminal\Google.Solutions.Terminal.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="ToolWindows\Credentials\NewCredentialsView.resx">
@@ -107,90 +112,16 @@
     <EmbeddedResource Update="ToolWindows\Options\TerminalOptionsSheet.resx">
       <DependentUpon>TerminalOptionsSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Update="ToolWindows\SshKeys\AuthorizedPublicKeysView.resx">
-      <DependentUpon>AuthorizedPublicKeysView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Update="ToolWindows\Tunnels\TunnelsView.resx">
       <DependentUpon>TunnelsView.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Copy_16x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Fullscreen_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SshKey_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Password_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AuthorizedKey_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DownloadFile_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Duplicate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DeleteKey_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Connect_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Settings_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AddCredentials_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Refresh_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Tunnel_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Disconnect_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Disconnected_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TextColor_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BackgroundColor_16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="obj\x86\Release\.NETFramework,Version=v4.6.2.AssemblyAttributes.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Properties\DefaultAppProtocols\chrome-80.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\chrome-8080.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\mysql-8.0.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\mysql-8.4.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\mysql-tunnel.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\mysql.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\postgres-tunnel.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\psql-16.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\psql-17.iapc" />
-    <None Remove="Properties\DefaultAppProtocols\sqlserver-tunnel.iapc" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\psql-16.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\psql-17.iapc" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\chrome-80.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\chrome-8080.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\mysql-8.0.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\mysql-8.4.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\mysql-tunnel.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\postgres-tunnel.iapc" />
-    <EmbeddedResource Include="Properties\DefaultAppProtocols\sqlserver-tunnel.iapc" />
+    <EmbeddedResource Update="ToolWindows\Session\SessionContextMenuCommands.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SessionContextMenuCommands.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ToolWindows\Session\SessionToolbarCommands.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SessionToolbarCommands.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

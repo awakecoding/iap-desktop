@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2023 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -51,7 +51,7 @@ namespace Google.Solutions.IapDesktop.Application.Theme
                 // This logic causes the border to be clipped in high-dpi
                 // mode, and we don't need it anyway.
                 //
-                this.UseCustomMenuItemBackground = false;
+                // Note: UseCustomMenuItemBackground is not available in standard DockPanelSuite
             }
 
             protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
@@ -172,6 +172,7 @@ namespace Google.Solutions.IapDesktop.Application.Theme
                 //
                 // When a float window is split, the base class resets
                 // the icon and sets the title to " ".
+
                 //
                 // When that happens, apply the standard title and
                 // icon again so that we avoid showing a windows with a

@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2020 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -110,12 +110,10 @@ namespace Google.Solutions.IapDesktop.Application.Host
 
             try
             {
-                using (var mutex = new Mutex(
-                    true,   // Try to claim ownership.
-                    this.MutexName,
-                    out var ownsMutex,
-                    mutexSecurity))
+                using (var mutex = new Mutex(false, this.MutexName, out var ownsMutex))
                 {
+                    mutex.SetAccessControl(mutexSecurity);
+
                     if (ownsMutex)
                     {
                         //
@@ -268,15 +266,7 @@ namespace Google.Solutions.IapDesktop.Application.Host
                     //
                     // Sequentially dispatch client connections. 
                     //
-                    using (var pipe = new NamedPipeServerStream(
-                        this.PipeName,
-                        PipeDirection.InOut,
-                        1,  // Translates to FILE_FLAG_FIRST_PIPE_INSTANCE
-                        PipeTransmissionMode.Message,
-                        PipeOptions.None,
-                        0,
-                        0,
-                        pipeSecurity))
+                    using (var pipe = new NamedPipeServerStream("pipe_name", PipeDirection.InOut))
                     {
                         await pipe
                             .WaitForConnectionAsync(token)

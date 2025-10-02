@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\Google.Solutions.IapDesktop.props" />
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -10,6 +10,9 @@
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <Prefer32Bit>true</Prefer32Bit>
     <Platforms>x64;x86;ARM64</Platforms>
+    
+    <!-- Disable Windows Forms obsolete analyzer warnings -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -18,7 +21,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Solutions.ThirdParty.DockPanelSuite" />
+    <PackageReference Include="DockPanelSuite" />
+    <PackageReference Include="DockPanelSuite.ThemeVS2015" />
     <PackageReference Include="Google.Apis" />
     <PackageReference Include="Google.Apis.Auth" />
     <PackageReference Include="Google.Apis.CloudResourceManager.v1" />

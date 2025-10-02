@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2023 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -119,7 +119,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                         $"Available version: {latestRelease.TagVersion}",
                     "Would you like to download the update now?")
                 {
-                    Icon = TaskDialogIcon.ShieldGreenBackground,
+                    Icon = Google.Solutions.Mvvm.Controls.TaskDialogIcon.ShieldGreenBackground,
                 };
                 dialogParameters.Buttons.Add(TaskDialogStandardButton.Cancel);
 
@@ -129,7 +129,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                 // In case there are multple download URLs, prefer the
                 // one that matches the current platform.
                 //
-                var downloadButton = new TaskDialogCommandLinkButton(
+                var downloadButton = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                     "Yes, download now",
                     DialogResult.OK);
 
@@ -147,7 +147,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                 //
                 // Show release notes.
                 //
-                var showReleaseNotes = new TaskDialogCommandLinkButton(
+                var showReleaseNotes = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                     "Show release notes",
                     DialogResult.OK);
                 showReleaseNotes.Click += (_, __) => this.browser.Navigate(
@@ -157,7 +157,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                 //
                 // No, later.
                 //
-                var laterButton = new TaskDialogCommandLinkButton(
+                var laterButton = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                     "No, download later",
                     DialogResult.Cancel);
                 dialogParameters.Buttons.Add(laterButton);
@@ -180,7 +180,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                 //
                 // Open survey.
                 //
-                var openButton = new TaskDialogCommandLinkButton(
+                var openButton = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                     "Start survey",
                     DialogResult.OK);
                 openButton.Click += (_, __) =>
@@ -193,7 +193,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                 //
                 // No, later.
                 //
-                var laterButton = new TaskDialogCommandLinkButton(
+                var laterButton = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                     "Maybe later",
                     DialogResult.Cancel);
                 dialogParameters.Buttons.Add(laterButton);
@@ -201,7 +201,7 @@ namespace Google.Solutions.IapDesktop.Application.ToolWindows.Update
                 //
                 // Opt-out.
                 //
-                dialogParameters.VerificationCheckBox = new TaskDialogVerificationCheckBox(
+                dialogParameters.VerificationCheckBox = new Google.Solutions.Mvvm.Controls.TaskDialogVerificationCheckBox(
                     "Don't show this message again")
                 {
                     Checked = false

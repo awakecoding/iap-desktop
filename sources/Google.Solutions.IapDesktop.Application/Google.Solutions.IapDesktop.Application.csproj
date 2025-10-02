@@ -8,9 +8,13 @@
     <UseWindowsForms>True</UseWindowsForms>
     
     <Platforms>x64;x86;ARM64</Platforms>
+    
+    <!-- Disable Windows Forms obsolete analyzer warnings -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Solutions.ThirdParty.DockPanelSuite" />
+    <PackageReference Include="DockPanelSuite" />
+    <PackageReference Include="DockPanelSuite.ThemeVS2015" />
     <PackageReference Include="Google.Apis" />
     <PackageReference Include="Google.Apis.Auth" />
     <PackageReference Include="Google.Apis.CloudResourceManager.v1" />

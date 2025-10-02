@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2024 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -78,7 +78,8 @@ namespace Google.Solutions.Mvvm.Test.Shell
             var dataObject = new VirtualFileDataObject(
                 Array.Empty<VirtualFileDataObject.Descriptor>());
 
-            Assert.IsNull(dataObject.GetData("Unsupported", false));
+            var unsupportedFormat = "Unsupported";
+            Assert.IsNull(dataObject.GetData(unsupportedFormat, false));
         }
 
         [Test]
@@ -102,15 +103,15 @@ namespace Google.Solutions.Mvvm.Test.Shell
             var dataObject = (UCOMIDataObject)new VirtualFileDataObject(
                 Array.Empty<VirtualFileDataObject.Descriptor>());
 
+            var formatEtc = new FORMATETC()
+            {
+                tymed = TYMED.TYMED_ISTORAGE,
+                cfFormat = (short)DataFormats.GetFormat(
+                    ShellDataFormats.CFSTR_FILECONTENTS).Id
+            };
+
             var e = Assert.Throws<COMException>(
-                () => dataObject.GetData(
-                    new FORMATETC()
-                    {
-                        tymed = TYMED.TYMED_ISTORAGE,
-                        cfFormat = (short)DataFormats.GetFormat(
-                            ShellDataFormats.CFSTR_FILECONTENTS).Id
-                    },
-                    out var _));
+                () => dataObject.GetData(ref formatEtc, out var _));
             Assert.AreEqual(HRESULT.DV_E_TYMED, (HRESULT)e!.ErrorCode);
         }
 
@@ -130,15 +131,15 @@ namespace Google.Solutions.Mvvm.Test.Shell
                         () => contentStream),
                 });
 
-                dataObject.GetData(
-                    new System.Runtime.InteropServices.ComTypes.FORMATETC()
-                    {
-                        tymed = TYMED.TYMED_ISTREAM |
-                            TYMED.TYMED_ISTORAGE,
-                        cfFormat = (short)DataFormats.GetFormat(
-                            ShellDataFormats.CFSTR_FILECONTENTS).Id
-                    },
-                    out var medium);
+                var formatEtc = new System.Runtime.InteropServices.ComTypes.FORMATETC()
+                {
+                    tymed = TYMED.TYMED_ISTREAM |
+                        TYMED.TYMED_ISTORAGE,
+                    cfFormat = (short)DataFormats.GetFormat(
+                        ShellDataFormats.CFSTR_FILECONTENTS).Id
+                };
+
+                dataObject.GetData(ref formatEtc, out var medium);
 
                 Assert.AreEqual(
                     TYMED.TYMED_ISTREAM,
@@ -166,15 +167,15 @@ namespace Google.Solutions.Mvvm.Test.Shell
                         () => contentStream),
                 });
 
-                dataObject.GetData(
-                    new System.Runtime.InteropServices.ComTypes.FORMATETC()
-                    {
-                        tymed = TYMED.TYMED_HGLOBAL |
-                            TYMED.TYMED_ISTORAGE,
-                        cfFormat = (short)DataFormats.GetFormat(
-                            ShellDataFormats.CFSTR_FILECONTENTS).Id
-                    },
-                    out var medium);
+                var formatEtc = new System.Runtime.InteropServices.ComTypes.FORMATETC()
+                {
+                    tymed = TYMED.TYMED_HGLOBAL |
+                        TYMED.TYMED_ISTORAGE,
+                    cfFormat = (short)DataFormats.GetFormat(
+                        ShellDataFormats.CFSTR_FILECONTENTS).Id
+                };
+
+                dataObject.GetData(ref formatEtc, out var medium);
 
                 Assert.AreEqual(
                     TYMED.TYMED_HGLOBAL,
@@ -203,15 +204,15 @@ namespace Google.Solutions.Mvvm.Test.Shell
                         () => throw new UnauthorizedAccessException()),
                 });
 
+                var formatEtc = new System.Runtime.InteropServices.ComTypes.FORMATETC()
+                {
+                    tymed = tymed,
+                    cfFormat = (short)DataFormats.GetFormat(
+                        ShellDataFormats.CFSTR_FILECONTENTS).Id
+                };
+
                 Assert.Throws<UnauthorizedAccessException>(
-                    () => dataObject.GetData(
-                        new System.Runtime.InteropServices.ComTypes.FORMATETC()
-                        {
-                            tymed = tymed,
-                            cfFormat = (short)DataFormats.GetFormat(
-                                ShellDataFormats.CFSTR_FILECONTENTS).Id
-                        },
-                        out var medium));
+                    () => dataObject.GetData(ref formatEtc, out var medium));
             }
         }
 

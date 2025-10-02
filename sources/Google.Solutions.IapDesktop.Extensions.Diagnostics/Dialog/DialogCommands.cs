@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2023 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -96,14 +96,14 @@ namespace Google.Solutions.IapDesktop.Extensions.Diagnostics.Dialog
                 "Heading",
                  "Text")
             {
-                Icon = TaskDialogIcon.ShieldGreenBackground
+                Icon = Google.Solutions.Mvvm.Controls.TaskDialogIcon.ShieldGreenBackground
             };
             dialogParameters.Buttons.Add(TaskDialogStandardButton.OK);
             dialogParameters.Buttons.Add(TaskDialogStandardButton.Cancel);
             dialogParameters.Footnote = "For more information, click <A HREF=\"#\">here</A>";
             dialogParameters.LinkClicked += (sender, args) => MessageBox.Show(this.window, "Link");
 
-            var linkButton = new TaskDialogCommandLinkButton(
+            var linkButton = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                 "Command one",
                 DialogResult.OK);
             linkButton.Click += (_, __) => MessageBox.Show(this.window, "Command one");

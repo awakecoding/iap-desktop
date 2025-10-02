@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2023 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -63,7 +63,7 @@ namespace Google.Solutions.IapDesktop.Application.Test.ToolWindows.Update
                 .Callback<IWin32Window, TaskDialogParameters>((w, p) =>
                 {
                     p.Buttons
-                        .OfType<TaskDialogCommandLinkButton>()
+                        .OfType<Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton>()
                         .First(b => b.Text == commandLinkToClick)
                         .PerformClick();
                 })

@@ -144,7 +144,7 @@ namespace Google.Solutions.IapDesktop.Application.Windows
             this.components.Add(Disposable
                 .Create((() =>
                     {
-                        this.TabPageContextMenu = null;
+                        // Note: TabPageContextMenu property removed in .NET 9
                         this.TabPageContextMenuStrip = null;
                     }))
                 .ToComponent());

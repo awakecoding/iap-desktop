@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <Platforms>x64;x86;ARM64</Platforms>
+    
+    <!-- Disable Windows Forms obsolete analyzer warnings -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Google.Solutions.ThirdParty.Terminal" />

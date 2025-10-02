@@ -245,11 +245,11 @@ namespace Google.Solutions.IapDesktop
                         retryArgs.Exception.Message)
                     {
                         Footnote = retryArgs.Exception.FullMessage(),
-                        Icon = TaskDialogIcon.Error
+                        Icon = Google.Solutions.Mvvm.Controls.TaskDialogIcon.Error
                     };
 
                     dialogParameters.Buttons.Add(TaskDialogStandardButton.Cancel);
-                    dialogParameters.Buttons.Add(new TaskDialogCommandLinkButton(
+                    dialogParameters.Buttons.Add(new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                         "Change network settings",
                         DialogResult.OK));
 
@@ -396,7 +396,7 @@ namespace Google.Solutions.IapDesktop
 
                 preAuthLayer.AddSingleton<IClock>(SystemClock.Default);
                 preAuthLayer.AddTransient<IConfirmationDialog, ConfirmationDialog>();
-                preAuthLayer.AddTransient<ITaskDialog, TaskDialog>();
+                preAuthLayer.AddTransient<ITaskDialog, Google.Solutions.Mvvm.Controls.TaskDialog>();
                 preAuthLayer.AddTransient<ICredentialDialog, CredentialDialog>();
                 preAuthLayer.AddTransient<IInputDialog, InputDialog>();
                 preAuthLayer.AddTransient<IExceptionDialog, ExceptionDialog>();

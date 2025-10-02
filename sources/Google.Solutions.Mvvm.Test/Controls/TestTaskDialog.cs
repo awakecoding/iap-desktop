@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2023 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -37,7 +37,7 @@ namespace Google.Solutions.Mvvm.Test.Controls
         {
             var parameters = new TaskDialogParameters("heading", "caption", "text");
             Assert.Throws<InvalidOperationException>(
-                () => new TaskDialog().ShowDialog(null, parameters));
+                () => new Google.Solutions.Mvvm.Controls.TaskDialog().ShowDialog(null, parameters));
         }
 
         //---------------------------------------------------------------------
@@ -66,7 +66,7 @@ namespace Google.Solutions.Mvvm.Test.Controls
                 verificationFlagChecked = false;
             }
 
-            var dialog = new TaskDialog()
+            var dialog = new Google.Solutions.Mvvm.Controls.TaskDialog()
             {
                 TaskDialogIndirect = taskDialogIndirect
             };
@@ -96,7 +96,7 @@ namespace Google.Solutions.Mvvm.Test.Controls
                 verificationFlagChecked = false;
             }
 
-            var dialog = new TaskDialog()
+            var dialog = new Google.Solutions.Mvvm.Controls.TaskDialog()
             {
                 TaskDialogIndirect = taskDialogIndirect
             };
@@ -114,8 +114,8 @@ namespace Google.Solutions.Mvvm.Test.Controls
             var parameters = new TaskDialogParameters("heading", "caption", "text");
             parameters.Buttons.Add(TaskDialogStandardButton.Cancel);
 
-            var yes = new TaskDialogCommandLinkButton("Yes", DialogResult.Yes);
-            var no = new TaskDialogCommandLinkButton("No", DialogResult.No);
+            var yes = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton("Yes", DialogResult.Yes);
+            var no = new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton("No", DialogResult.No);
 
             parameters.Buttons.Add(yes);
             parameters.Buttons.Add(no);
@@ -133,12 +133,12 @@ namespace Google.Solutions.Mvvm.Test.Controls
                 Assert.IsNotNull(config.cButtons);
                 Assert.AreEqual(2, config.cButtons);
 
-                buttonPressed = TaskDialog.CommandLinkIdOffset + 1; // No
+                buttonPressed = Google.Solutions.Mvvm.Controls.TaskDialog.CommandLinkIdOffset + 1; // No
                 radioButtonPressed = -1;
                 verificationFlagChecked = false;
             }
 
-            var dialog = new TaskDialog()
+            var dialog = new Google.Solutions.Mvvm.Controls.TaskDialog()
             {
                 TaskDialogIndirect = taskDialogIndirect
             };
@@ -156,7 +156,7 @@ namespace Google.Solutions.Mvvm.Test.Controls
         {
             var parameters = new TaskDialogParameters("heading", "caption", "text")
             {
-                VerificationCheckBox = new TaskDialogVerificationCheckBox("check me")
+                VerificationCheckBox = new Google.Solutions.Mvvm.Controls.TaskDialogVerificationCheckBox("check me")
             };
 
             parameters.Buttons.Add(TaskDialogStandardButton.OK);
@@ -174,7 +174,7 @@ namespace Google.Solutions.Mvvm.Test.Controls
                 verificationFlagChecked = true;
             }
 
-            var dialog = new TaskDialog()
+            var dialog = new Google.Solutions.Mvvm.Controls.TaskDialog()
             {
                 TaskDialogIndirect = taskDialogIndirect
             };

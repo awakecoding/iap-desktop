@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright 2024 Google LLC
 //
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -312,7 +312,7 @@ namespace Google.Solutions.IapDesktop.Extensions.Session.ToolWindows.Session
                     && !this.AreCredentialsComplete)) &&
                await IsGrantedPermissionToCreateWindowsCredentialsAsync().ConfigureAwait(true))
             {
-                dialogParameters.Buttons.Add(new TaskDialogCommandLinkButton(
+                dialogParameters.Buttons.Add(new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                     "Generate new credentials",
                     GenerateNewCredentialsResult));
             }
@@ -324,12 +324,12 @@ namespace Google.Solutions.IapDesktop.Extensions.Session.ToolWindows.Session
                 return;
             }
 
-            dialogParameters.Buttons.Add(new TaskDialogCommandLinkButton(
+            dialogParameters.Buttons.Add(new Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton(
                 "Enter credentials manually",
                 EnterCredentialsResult));
 
             DialogResult result;
-            if (dialogParameters.Buttons.OfType<TaskDialogCommandLinkButton>().Count() > 1)
+            if (dialogParameters.Buttons.OfType<Google.Solutions.Mvvm.Controls.TaskDialogCommandLinkButton>().Count() > 1)
             {
                 result = this.taskDialog.ShowDialog(this.owner, dialogParameters);
             }

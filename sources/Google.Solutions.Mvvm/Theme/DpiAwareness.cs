@@ -130,7 +130,12 @@ namespace Google.Solutions.Mvvm.Theme
                 {
                     var winFormsConfig = (NameValueCollection)ConfigurationManager
                         .GetSection("System.Windows.Forms.ApplicationConfigurationSection");
-                    winFormsConfig["DpiAwareness"] = winFormsDpiAwareness;
+                    
+                    // Check if the configuration section exists before trying to set the value
+                    if (winFormsConfig != null)
+                    {
+                        winFormsConfig["DpiAwareness"] = winFormsDpiAwareness;
+                    }
                 }
 
                 currentMode = value;

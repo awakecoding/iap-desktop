@@ -6,12 +6,17 @@
     <Description>MVVM and controls library</Description>
     
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseWindowsForms>true</UseWindowsForms>
     
     <Platforms>x64;x86;ARM64</Platforms>
+    
+    <!-- Disable Windows Forms obsolete analyzer warnings -->
+    <NoWarn>$(NoWarn);WFO1000</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Google.Apis.Core" />
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="System.Resources.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
