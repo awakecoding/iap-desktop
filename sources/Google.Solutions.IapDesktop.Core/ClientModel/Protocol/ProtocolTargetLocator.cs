@@ -100,7 +100,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Protocol
                 ParametersEqual(locator.Parameters, this.Parameters);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as ProtocolTargetLocator);
         }

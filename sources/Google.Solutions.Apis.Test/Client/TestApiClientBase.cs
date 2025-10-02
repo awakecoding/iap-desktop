@@ -69,7 +69,7 @@ namespace Google.Solutions.Apis.Test.Client
                 {
                     return IsDcaEnabledForHandler(delegatingHandler.InnerHandler);
                 }
-                else if (handler is WebRequestHandler httpHandler)
+                else if (handler is HttpClientHandler httpHandler)
                 {
                     return httpHandler.ClientCertificates.Count > 0;
                 }

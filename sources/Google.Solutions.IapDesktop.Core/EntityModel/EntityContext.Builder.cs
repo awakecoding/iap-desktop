@@ -47,11 +47,11 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
             private readonly List<RegisteredAsyncAspectProvider> asyncAspectProviders =
                 new List<RegisteredAsyncAspectProvider>();
 
-            private readonly MethodInfo addCacheCoreMethod;
-            private readonly MethodInfo addNavigatorCoreMethod;
-            private readonly MethodInfo addSearcherCoreMethod;
-            private readonly MethodInfo addAspectProviderCoreMethod;
-            private readonly MethodInfo addAsyncAspectProviderCoreMethod;
+            private readonly MethodInfo? addCacheCoreMethod;
+            private readonly MethodInfo? addNavigatorCoreMethod;
+            private readonly MethodInfo? addSearcherCoreMethod;
+            private readonly MethodInfo? addAspectProviderCoreMethod;
+            private readonly MethodInfo? addAsyncAspectProviderCoreMethod;
 
             public IEventQueue EventQueue { get; }
 
@@ -183,7 +183,7 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
                     cache.GetType(),
                     typeof(IEntityCache<>)))
                 {
-                    this.addCacheCoreMethod
+                    this.addCacheCoreMethod?
                         .MakeGenericMethod(genericInterface.GenericTypeArguments)
                         .Invoke(this, new object[] { cache });
                 }
@@ -197,7 +197,7 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
                     navigator.GetType(),
                     typeof(IEntityNavigator<,>)))
                 {
-                    this.addNavigatorCoreMethod
+                    this.addNavigatorCoreMethod?
                         .MakeGenericMethod(genericInterface.GenericTypeArguments)
                         .Invoke(this, new object[] { navigator });
                 }
@@ -216,7 +216,7 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
                     searcher.GetType(),
                     typeof(IEntitySearcher<,>)))
                 {
-                    this.addSearcherCoreMethod
+                    this.addSearcherCoreMethod?
                         .MakeGenericMethod(genericInterface.GenericTypeArguments)
                         .Invoke(this, new object[] { searcher });
                 }
@@ -238,7 +238,7 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
                     provider.GetType(),
                     typeof(IEntityAspectProvider<,>)))
                 {
-                    this.addAspectProviderCoreMethod
+                    this.addAspectProviderCoreMethod?
                         .MakeGenericMethod(genericInterface.GenericTypeArguments)
                         .Invoke(this, new object[] { provider });
                 }
@@ -250,7 +250,7 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
                     provider.GetType(),
                     typeof(IAsyncEntityAspectProvider<,>)))
                 {
-                    this.addAsyncAspectProviderCoreMethod
+                    this.addAsyncAspectProviderCoreMethod?
                         .MakeGenericMethod(genericInterface.GenericTypeArguments)
                         .Invoke(this, new object[] { provider });
                 }

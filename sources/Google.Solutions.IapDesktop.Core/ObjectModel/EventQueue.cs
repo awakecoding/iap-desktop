@@ -172,7 +172,10 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
                         Debug.Assert(
                             Assembly.GetEntryAssembly() == null, // Don't assert in unit tests
                             "One or more subscribers failed to handle an event: " + t.Exception);
-                        CoreTraceSource.Log.TraceError(t.Exception);
+                        if (t.Exception != null)
+                        {
+                            CoreTraceSource.Log.TraceError(t.Exception);
+                        }
                     },
                     CancellationToken.None,
                     TaskContinuationOptions.OnlyOnFaulted,

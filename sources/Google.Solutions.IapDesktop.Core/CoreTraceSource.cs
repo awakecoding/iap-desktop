@@ -25,6 +25,6 @@ namespace Google.Solutions.IapDesktop.Core
 {
     public static class CoreTraceSource
     {
-        public static readonly TraceSource Log = new TraceSource(typeof(CoreTraceSource).Namespace);
+        public static readonly TraceSource Log = new TraceSource(typeof(CoreTraceSource).Namespace ?? "Google.Solutions.IapDesktop.Core");
     }
 }

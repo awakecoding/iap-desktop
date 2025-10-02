@@ -49,20 +49,20 @@ namespace Google.Solutions.Platform.IO
             this.target.Disconnected += OnDisconnected;
         }
 
-        private void OnFatalError(object sender, PseudoTerminalErrorEventArgs args)
+        private void OnFatalError(object? sender, PseudoTerminalErrorEventArgs args)
         {
             this.callbackContext.Send(
                 _ => this.FatalError?.Invoke(this, args),
                 null);
         }
 
-        private void OnOutputAvailable(object sender, PseudoTerminalDataEventArgs args)
+        private void OnOutputAvailable(object? sender, PseudoTerminalDataEventArgs args)
         {
             this.callbackContext.Send(
                 _ => this.OutputAvailable?.Invoke(this, args),
                 null);
         }
-        private void OnDisconnected(object sender, EventArgs args)
+        private void OnDisconnected(object? sender, EventArgs args)
         {
             this.callbackContext.Send(
                 _ => this.Disconnected?.Invoke(this, args),

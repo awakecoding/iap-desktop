@@ -163,7 +163,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Transport
                         t.Result.Closed += OnClosed;
                     }, TaskContinuationOptions.OnlyOnRanToCompletion);
 
-                    void OnClosed(object sender, EventArgs __)
+                    void OnClosed(object? sender, EventArgs __)
                     {
                         var tunnel = (IapTunnel)sender;
 

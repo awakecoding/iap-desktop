@@ -234,7 +234,7 @@ namespace Google.Solutions.Apis.Auth.Gaia
                 // Verify that all requested scopes have been granted.
                 //
                 var grantedScopes = apiCredential.Token.Scope?.Split(' ');
-                if (initializer.Scopes.Any(
+                if (grantedScopes != null && initializer.Scopes.Any(
                     requestedScope => !grantedScopes.Contains(requestedScope)))
                 {
                     throw new OAuthScopeNotGrantedException(

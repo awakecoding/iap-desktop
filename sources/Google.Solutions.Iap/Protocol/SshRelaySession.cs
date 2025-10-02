@@ -459,24 +459,24 @@ namespace Google.Solutions.Iap.Protocol
 
             public ulong LastAckReceived
             {
-                get => (ulong)Thread.VolatileRead(ref this.lastAckReceived);
+                get => (ulong)Volatile.Read(ref this.lastAckReceived);
                 set => this.lastAckReceived = (long)value;
             }
 
             public ulong LastAckSent
             {
-                get => (ulong)Thread.VolatileRead(ref this.lastAckSent);
+                get => (ulong)Volatile.Read(ref this.lastAckSent);
                 set => this.lastAckSent = (long)value;
             }
 
             public ulong BytesReceived
             {
-                get => (ulong)Thread.VolatileRead(ref this.bytesReceived);
+                get => (ulong)Volatile.Read(ref this.bytesReceived);
             }
 
             public ulong BytesSent
             {
-                get => (ulong)Thread.VolatileRead(ref this.bytesSent);
+                get => (ulong)Volatile.Read(ref this.bytesSent);
             }
 
             public void AddBytesReceived(uint delta)

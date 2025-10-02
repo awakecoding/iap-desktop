@@ -128,7 +128,7 @@ namespace Google.Solutions.Apis.Test.Client
                 CreateAuthorization(DeviceEnrollmentState.Enrolled).Object,
                 TestProject.UserAgent);
 
-            var handler = (WebRequestHandler)factory
+            var handler = (HttpClientHandler)factory
                 .CreateHttpClient(new Google.Apis.Http.CreateHttpClientArgs())
                 .GetInnerHandler();
 
@@ -148,7 +148,7 @@ namespace Google.Solutions.Apis.Test.Client
                 CreateAuthorization(DeviceEnrollmentState.Enrolled).Object,
                 TestProject.UserAgent);
 
-            var handler = (WebRequestHandler)factory
+            var handler = (HttpClientHandler)factory
                 .CreateHttpClient(new Google.Apis.Http.CreateHttpClientArgs())
                 .GetInnerHandler();
 

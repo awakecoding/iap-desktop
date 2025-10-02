@@ -25,6 +25,6 @@ namespace Google.Solutions.Iap
 {
     public static class IapTraceSource
     {
-        public static readonly TraceSource Log = new TraceSource(typeof(IapTraceSource).Namespace);
+        public static readonly TraceSource Log = new TraceSource(typeof(IapTraceSource).Namespace ?? "Google.Solutions.Iap");
     }
 }

@@ -72,7 +72,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Transport.Policies
             return this.Name.GetHashCode();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as ProcessPolicyBase);
         }

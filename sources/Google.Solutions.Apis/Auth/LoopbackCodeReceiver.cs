@@ -195,7 +195,7 @@ namespace Google.Solutions.Apis.Auth
                                 queryParameters
                                     .AllKeys
                                     .Where(k => k != null) // k is null if there's no equal sign.
-                                    .ToDictionary(k => k, k => queryParameters[k]));
+                                    .ToDictionary(k => k!, k => queryParameters[k]));
                         }
                     }
                 }

@@ -247,7 +247,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Transport
                     Equals(this.LocalEndpoint, other.LocalEndpoint);
             }
 
-            public override bool Equals(object obj)
+            public override bool Equals(object? obj)
             {
                 return Equals((Profile)obj);
             }

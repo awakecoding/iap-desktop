@@ -26,6 +26,6 @@ namespace Google.Solutions.Platform
 {
     public static class PlatformTraceSource
     {
-        public static readonly TraceSource Log = new TraceSource(typeof(PlatformTraceSource).Namespace);
+        public static readonly TraceSource Log = new TraceSource(typeof(PlatformTraceSource).Namespace ?? "Google.Solutions.Platform");
     }
 }

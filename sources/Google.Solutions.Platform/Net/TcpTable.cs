@@ -64,9 +64,9 @@ namespace Google.Solutions.Platform.Net
                             {
                                 // Got the data.
                                 var ptr = buffer.DangerousGetHandle();
-                                var tcpTable = (UnsafeNativeMethods.MIB_TCPTABLE2)Marshal.PtrToStructure(
+                                var tcpTable = (UnsafeNativeMethods.MIB_TCPTABLE2)(Marshal.PtrToStructure(
                                     ptr,
-                                    typeof(UnsafeNativeMethods.MIB_TCPTABLE2));
+                                    typeof(UnsafeNativeMethods.MIB_TCPTABLE2)) ?? new UnsafeNativeMethods.MIB_TCPTABLE2());
                                 var list = new List<UnsafeNativeMethods.MIB_TCPROW2>();
 
                                 if (tcpTable.dwNumEntries > 0)
@@ -77,9 +77,9 @@ namespace Google.Solutions.Platform.Net
                                     // Read array entries, one by one.
                                     for (var i = 0; i < tcpTable.dwNumEntries; i++)
                                     {
-                                        var row = (UnsafeNativeMethods.MIB_TCPROW2)Marshal.PtrToStructure(
+                                        var row = (UnsafeNativeMethods.MIB_TCPROW2)(Marshal.PtrToStructure(
                                             ptr,
-                                            typeof(UnsafeNativeMethods.MIB_TCPROW2));
+                                            typeof(UnsafeNativeMethods.MIB_TCPROW2)) ?? new UnsafeNativeMethods.MIB_TCPROW2());
 
                                         list.Add(row);
                                         ptr = (IntPtr)((long)ptr + Marshal.SizeOf(row));

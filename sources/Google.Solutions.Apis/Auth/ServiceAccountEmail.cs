@@ -50,7 +50,7 @@ namespace Google.Solutions.Apis.Auth
         // Equality.
         //---------------------------------------------------------------------
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is ServiceAccountEmail other && Equals(other);
         }

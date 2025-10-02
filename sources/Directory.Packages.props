@@ -6,9 +6,14 @@
 		-->
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 	</PropertyGroup>
+	
+	<PropertyGroup>
+		<!-- Disable multiple package source warnings -->
+		<RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+	</PropertyGroup>
     <ItemGroup>
 		<PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.8.14"/>
-		<PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0"/>
+		<PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0"/>
 			
         <PackageVersion Include="Castle.Core" Version="5.2.1" />
         <PackageVersion Include="Google.Apis" Version="1.70.0" />

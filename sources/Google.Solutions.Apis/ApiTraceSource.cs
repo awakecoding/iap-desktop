@@ -26,7 +26,7 @@ namespace Google.Solutions.Apis
 {
     public static class ApiTraceSource
     {
-        public static readonly TraceSource Log = new TraceSource(typeof(ApplicationContext).Namespace);
+        public static readonly TraceSource Log = new TraceSource(typeof(ApiTraceSource).Namespace ?? "Google.Solutions.Apis");
 
         static ApiTraceSource()
         {

@@ -84,7 +84,8 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
                 null);
             if (constructorWithServiceProvider != null)
             {
-                return Activator.CreateInstance(serviceType, (IServiceProvider)this);
+                return Activator.CreateInstance(serviceType, (IServiceProvider)this) 
+                    ?? throw new InvalidOperationException($"Failed to create instance of {serviceType}");
             }
 
             //
@@ -97,7 +98,8 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
                 null);
             if (constructorWithServiceCategoryProvider != null)
             {
-                return Activator.CreateInstance(serviceType, (IServiceCategoryProvider)this);
+                return Activator.CreateInstance(serviceType, (IServiceCategoryProvider)this)
+                    ?? throw new InvalidOperationException($"Failed to create instance of {serviceType}");
             }
 
             //
@@ -143,7 +145,8 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
 
                     return Activator.CreateInstance(
                         serviceType,
-                        parameterValues);
+                        parameterValues)
+                        ?? throw new InvalidOperationException($"Failed to create instance of {serviceType}");
                 }
                 else
                 {
@@ -301,7 +304,8 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
                     //
                     return Activator.CreateInstance(typeof(Service<>)
                         .MakeGenericType(serviceType.GetGenericArguments()),
-                        this);
+                        this)
+                        ?? throw new InvalidOperationException($"Failed to create Service<> instance for {serviceType}");
                 }
                 else
                 {
@@ -507,18 +511,14 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
     {
         public static TService GetService<TService>(this IServiceProvider provider)
         {
-            return (TService)provider.GetService(typeof(TService));
+            return (TService)(provider.GetService(typeof(TService)) 
+                ?? throw new UnknownServiceException($"Service {typeof(TService)} not found"));
         }
     }
 
     [Serializable]
     public class UnknownServiceException : ApplicationException
     {
-        protected UnknownServiceException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-
         public UnknownServiceException(string service) : base(service)
         {
         }

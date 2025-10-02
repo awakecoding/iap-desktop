@@ -55,7 +55,7 @@ namespace Google.Solutions.Platform.Dispatch
             return other != null && other.Id == this.Id;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as IWtsSession);
         }

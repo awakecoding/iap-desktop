@@ -9,10 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Google.Solutions.Common\Google.Solutions.Common.csproj" />
   </ItemGroup>

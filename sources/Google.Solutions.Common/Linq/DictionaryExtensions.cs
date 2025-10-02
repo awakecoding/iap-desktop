@@ -64,7 +64,7 @@ namespace Google.Solutions.Common.Linq
         /// possible key duplicates.
         /// </summary>
         public static IDictionary<K, V> ToDictionary<K, V>(
-            this IEnumerable<KeyValuePair<K, V>> entries)
+            this IEnumerable<KeyValuePair<K, V>> entries) where K : notnull
         {
             return entries
                 .ExpectNotNull(nameof(entries))

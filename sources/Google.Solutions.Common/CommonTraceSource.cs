@@ -25,6 +25,6 @@ namespace Google.Solutions.Common
 {
     public static class CommonTraceSource
     {
-        public static readonly TraceSource Log = new TraceSource(typeof(CommonTraceSource).Namespace);
+        public static readonly TraceSource Log = new TraceSource(typeof(CommonTraceSource).Namespace ?? "Google.Solutions.Common");
     }
 }

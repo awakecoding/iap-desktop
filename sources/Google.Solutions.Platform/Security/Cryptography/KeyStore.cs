@@ -96,7 +96,7 @@ namespace Google.Solutions.Platform.Security.Cryptography
             return Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 @"Microsoft\Crypto\Keys",
-                key.UniqueName);
+                key.UniqueName ?? "unknown");
         }
 
         //---------------------------------------------------------------------

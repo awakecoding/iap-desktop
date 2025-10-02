@@ -42,7 +42,7 @@ namespace Google.Solutions.IapDesktop.Core.EntityModel
             return $"{this.ResourceType}/{this.Type.FullName}";
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is EntityTypeLocator locator && Equals(locator);
         }

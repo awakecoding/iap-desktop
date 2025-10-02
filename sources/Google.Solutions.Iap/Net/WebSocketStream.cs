@@ -173,7 +173,7 @@ namespace Google.Solutions.Iap.Net
                     {
                         throw new WebSocketStreamClosedByServerException(
                             result.CloseStatus.Value,
-                            result.CloseStatusDescription);
+                            result.CloseStatusDescription ?? "No description provided");
                     }
                     else
                     {

@@ -34,7 +34,7 @@ $(MAKEDIR)\obj\$(CONFIGURATION)\Google.Solutions.Tsc.$(TSC_VERSION).nupkg:
 
 	msbuild \
 		/t:Restore;Build \
-		"/p:Configuration=$(CONFIGURATION);TargetFrameworks=net462;TargetFrameworkVersion=v4.6.2;Platform=Any CPU;Version=$(TSC_VERSION);OutputPath=bin\$(CONFIGURATION)" \
+		"/p:Configuration=$(CONFIGURATION);TargetFramework=net9.0;Platform=Any CPU;Version=$(TSC_VERSION);OutputPath=bin\$(CONFIGURATION)" \
 		"$(MAKEDIR)\Google.Solutions.Tsc.sln"
         
     	nuget pack -OutputDirectory $(MAKEDIR)\obj\$(CONFIGURATION)\ <<Google.Solutions.Tsc.nuspec
@@ -47,13 +47,13 @@ $(MAKEDIR)\obj\$(CONFIGURATION)\Google.Solutions.Tsc.$(TSC_VERSION).nupkg:
     <owners>Google LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Terminal service client</description><dependencies>
-      <group targetFramework=".NETFramework4.6.2" />
+      <group targetFramework="net9.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="$(MAKEDIR)\bin\$(CONFIGURATION)\AxInterop.MSTSCLib.dll" target="lib\net462\AxInterop.MSTSCLib.dll" />
-    <file src="$(MAKEDIR)\bin\$(CONFIGURATION)\Google.Solutions.Tsc.dll" target="lib\net462\Google.Solutions.Tsc.dll" />
-    <file src="$(MAKEDIR)\bin\$(CONFIGURATION)\Interop.MSTSCLib.dll" target="lib\net462\Interop.MSTSCLib.dll" />
+    <file src="$(MAKEDIR)\bin\$(CONFIGURATION)\AxInterop.MSTSCLib.dll" target="lib\net9.0\AxInterop.MSTSCLib.dll" />
+    <file src="$(MAKEDIR)\bin\$(CONFIGURATION)\Google.Solutions.Tsc.dll" target="lib\net9.0\Google.Solutions.Tsc.dll" />
+    <file src="$(MAKEDIR)\bin\$(CONFIGURATION)\Interop.MSTSCLib.dll" target="lib\net9.0\Interop.MSTSCLib.dll" />
   </files>
 </package>
 <<NOKEEP

@@ -147,7 +147,7 @@ namespace Google.Solutions.Apis.Client
 
             protected override HttpClientHandler CreateClientHandler()
             {
-                var handler = new NtlmResilientWebRequestHandler(NtlmProxyAuthenticationRetries)
+                var handler = new NtlmResilientHttpClientHandler(NtlmProxyAuthenticationRetries)
                 {
                     Proxy = WebRequest.DefaultWebProxy,
                 };
@@ -183,11 +183,11 @@ namespace Google.Solutions.Apis.Client
             }
         }
 
-        private class NtlmResilientWebRequestHandler : WebRequestHandler
+        private class NtlmResilientHttpClientHandler : HttpClientHandler
         {
             private readonly ushort maxRetries;
 
-            public NtlmResilientWebRequestHandler(ushort maxRetries)
+            public NtlmResilientHttpClientHandler(ushort maxRetries)
             {
                 this.maxRetries = maxRetries;
             }

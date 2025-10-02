@@ -39,7 +39,8 @@ namespace Google.Solutions.IapDesktop.Core.ObjectModel
 
         public TService Activate()
         {
-            return (TService)this.serviceProvider.GetService(typeof(TService));
+            return (TService)(this.serviceProvider.GetService(typeof(TService)) 
+                ?? throw new InvalidOperationException($"Service {typeof(TService)} not found"));
         }
     }
 }

@@ -104,7 +104,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Protocol
                 (this.LocalEndpoint?.GetHashCode() ?? 0);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as AppProtocol);
         }

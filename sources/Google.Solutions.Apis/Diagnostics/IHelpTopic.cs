@@ -30,7 +30,7 @@ namespace Google.Solutions.Apis.Diagnostics
         Uri Address { get; }
     }
 
-    public interface IExceptionWithHelpTopic : _Exception
+    public interface IExceptionWithHelpTopic
     {
         IHelpTopic? Help { get; }
     }

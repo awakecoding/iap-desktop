@@ -36,8 +36,8 @@ namespace Google.Solutions.Common.Diagnostics
                 //
                 // Get the file version of mscorlib.dll.
                 //
-                var assemblyUri = typeof(string).Assembly.CodeBase;
-                var versionInfo = FileVersionInfo.GetVersionInfo(new Uri(assemblyUri).LocalPath);
+                var assemblyLocation = typeof(string).Assembly.Location;
+                var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
 
                 return new Version(
                     versionInfo.FileMajorPart,

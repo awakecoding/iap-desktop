@@ -46,7 +46,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Traits
             return 0;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as InstanceTrait);
         }
@@ -125,7 +125,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Traits
             return 0;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as WindowsTrait);
         }
@@ -204,7 +204,7 @@ namespace Google.Solutions.IapDesktop.Core.ClientModel.Traits
             return 0;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as LinuxTrait);
         }
